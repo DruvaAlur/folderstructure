@@ -84,7 +84,9 @@ li.file:before {
   content: "📄";
   font-size: 14px;
 }
-
+#root{
+  height: 100vh;
+}
 li.folder:before {
   content: "📂";
   font-size: 14px;
