@@ -37,6 +37,14 @@ function App() {
 
     const newTree = JSON.parse(JSON.stringify(tree));
     const parent = path.slice(0, -1).reduce((acc, key) => acc[key], newTree);
+    for (let key in parent) {
+      if (key.toLowerCase() == newName.toLowerCase()) {
+        alert(
+          "A file/folder already exists with same Name please choose other Name"
+        );
+        return;
+      }
+    }
     const oldName = path[path.length - 1];
 
     parent[newName] = parent[oldName];

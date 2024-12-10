@@ -18,7 +18,7 @@ function Folder({
     setIsSelected(path);
   };
   return (
-    <div style={{ marginLeft: "20px", width: "100%" }}>
+    <div style={{ marginLeft: "20px", width: "30%" }}>
       <ul
         style={{
           backgroundColor:
