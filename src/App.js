@@ -56,9 +56,12 @@ function App() {
     }
 
     const oldName = path[path.length - 1];
-
-    parent[newName] = parent[oldName];
-    delete parent[oldName];
+    if (Array.isArray(parent)) {
+      parent[oldName] = newName;
+    } else {
+      parent[newName] = parent[oldName];
+      delete parent[oldName];
+    }
 
     setTree(newTree);
   };
@@ -76,7 +79,7 @@ function App() {
     const nodeName = path[path.length - 1];
 
     if (Array.isArray(parent)) {
-      const index = parent.indexOf(nodeName);
+      const index = nodeName;
       if (index > -1) parent.splice(index, 1);
     } else {
       delete parent[nodeName];
