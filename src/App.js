@@ -25,9 +25,15 @@ function App() {
     const newTree = JSON.parse(JSON.stringify(tree));
 
     if (isSelected == "") {
+      if (checkIfAlreadyExists(newTree, name)) {
+        return;
+      }
       newTree[name] = {};
     } else {
       const node = path.reduce((acc, key) => acc[key], newTree);
+      if (checkIfAlreadyExists(node, name)) {
+        return;
+      }
       node[name] = {};
     }
 
@@ -45,14 +51,10 @@ function App() {
 
     const newTree = JSON.parse(JSON.stringify(tree));
     const parent = path.slice(0, -1).reduce((acc, key) => acc[key], newTree);
-    for (let key in parent) {
-      if (key.toLowerCase() == newName.toLowerCase()) {
-        alert(
-          "A file/folder already exists with same Name please choose other Name"
-        );
-        return;
-      }
+    if (checkIfAlreadyExists(parent, newName)) {
+      return;
     }
+
     const oldName = path[path.length - 1];
 
     parent[newName] = parent[oldName];
@@ -83,6 +85,17 @@ function App() {
     setTree(newTree);
   };
 
+  const checkIfAlreadyExists = (node, newName) => {
+    for (let key in node) {
+      if (key.toLowerCase() == newName.toLowerCase()) {
+        alert(
+          "A file/folder already exists with same Name please choose other Name"
+        );
+        return true;
+      }
+    }
+    return false;
+  };
   return (
     <>
       <div className="App">
