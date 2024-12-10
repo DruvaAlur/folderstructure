@@ -53,14 +53,9 @@ function Folder({
               cursor: "pointer",
             }}
           >
-            📄 {name}
+            📄 {typeof value === "object" ? name : value}
           </li>
         )}
-        {/* <button onClick={() => addNode(path, isFolder ? "folder" : "file")}>
-          ➕
-        </button>
-        <button onClick={() => editNode(path)}>✏️</button>
-        <button onClick={() => deleteNode(path)}>❌</button> */}
       </ul>
       {isFolder && isOpen && (
         <div>
