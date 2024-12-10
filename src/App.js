@@ -87,12 +87,13 @@ function App() {
 
   const checkIfAlreadyExists = (node, newName) => {
     const nodeKeys = Array.isArray(node) ? node : Object.keys(node);
-
-    if (nodeKeys.some((key) => key.toLowerCase() === newName.toLowerCase())) {
-      alert(
-        "A file/folder already exists with the same name. Please choose another name."
-      );
-      return true;
+    for (let key of nodeKeys) {
+      if (key.toLowerCase() === newName.toLowerCase()) {
+        alert(
+          "A file/folder already exists with the same name. Please choose another name."
+        );
+        return true;
+      }
     }
 
     return false;
